@@ -258,4 +258,5 @@ do {
     physicistsGroup.addStudent(newbee: jamesMaxwell)
 }
 
+// Result output section
 print("Seems like success")
