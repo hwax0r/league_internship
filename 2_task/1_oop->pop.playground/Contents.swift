@@ -43,61 +43,55 @@ protocol HeroStatisticsProtocol {
     
     var guildType: GuildType { get set }
     var currentPosition: CGPoint { get set }
-    var moveSpeed: Float { get set }
     var attackType: AttackType { get set }
     var ultimateAbility: UltimateType { get set }
 }
 
+
+
+protocol HeroProtocol: AnyObject {
+    // migration HeroStatisticsProtocol -> HeroStatistics seems like non-POP programming
+    // not really clear how to make equatable protocol variables
+    var statistics: HeroStatistics? { get }
+    
+    init(statistics: HeroStatistics)
+    
+    func attack()
+    func updateStatistics(_ statistics: HeroStatistics)
+    func ultimate()
+    func info()
+}
+
 // Задание №4 (необязательно)
 // Добавьте возможность героям летать. func fly(to point: CGPoint)
-protocol HeroFlyable {
-    var flySpeedModifier: Float { get }
+
+protocol StopProtocol {
+    func stop()
+}
+
+protocol MovableProtocol: StopProtocol {
+    var moveSpeed: Float? { get }
+    
+    func move(to point: CGPoint)
+}
+
+protocol FlyableProtocol: StopProtocol {
     var flySpeed: Float? { get }
     
     func fly(to point: CGPoint)
 }
 
-protocol HeroProtocol: AnyObject {
-    var armor: Float? { get }
-    var attackPower: Float? { get }
-    var strength: Float? { get }
-    var agility: Float? { get }
-    var intelligence: Float? { get }
-    var hitPoints: Float? { get }
-    var mana: Float? { get }
-    
-    var guildType: GuildType? { get }
-    var currentPosition: CGPoint? { get }
-    var moveSpeed: Float? { get }
-    var attackType: AttackType? { get }
-    var ultimateAbility: UltimateType? { get set }
-    
-    init(statistics: HeroStatisticsProtocol)
-    
-    func attack()
-    func move(to point: CGPoint)
-    func stop()
-    func updateStatistics(_ statistics: HeroStatisticsProtocol)
-    func ultimate()
-    func info()
-    func getStatistics() -> HeroStatisticsProtocol?
-}
-
 extension HeroProtocol {
     func attack() {
-        guard let attackType = self.attackType else {
+        guard let attackType = statistics?.attackType else {
             print("Attack type is not set")
             return
         }
         print("Attack of type: \(attackType.rawValue)")
     }
-
-    func stop() {
-        print("stop")
-    }
     
     func ultimate() {
-        guard let ultimate = ultimateAbility else {
+        guard let ultimate = statistics?.ultimateAbility else {
             print("Hero ultimate ability is not set")
             return
         }
@@ -107,7 +101,7 @@ extension HeroProtocol {
     func info() {
         print("\(String(describing: self))")
     }
- }
+}
 
 
 struct HeroStatistics: HeroStatisticsProtocol, Equatable {
@@ -121,7 +115,6 @@ struct HeroStatistics: HeroStatisticsProtocol, Equatable {
     
     var guildType: GuildType
     var currentPosition: CGPoint
-    var moveSpeed: Float
     var attackType: AttackType
     var ultimateAbility: UltimateType
     
@@ -135,7 +128,6 @@ struct HeroStatistics: HeroStatisticsProtocol, Equatable {
         lhs.mana == rhs.mana &&
         lhs.guildType == rhs.guildType &&
         lhs.currentPosition == rhs.currentPosition &&
-        lhs.moveSpeed == rhs.moveSpeed &&
         lhs.attackType == rhs.attackType &&
         lhs.ultimateAbility == rhs.ultimateAbility
     }
@@ -152,9 +144,9 @@ func randomStats(guild: GuildType, curPos: CGPoint) -> HeroStatistics {
     
     let guildType = guild
     let currentPosition = curPos
-    let moveSpeed = Float.random(in: 7.0...15.99)
     let attackType = Bool.random() ? AttackType.melee : AttackType.longRange
     let ultimateAbility = UltimateType.random
+    
     return HeroStatistics(armor: armor,
                           attackPower: attackPower,
                           strength: strength,
@@ -164,126 +156,149 @@ func randomStats(guild: GuildType, curPos: CGPoint) -> HeroStatistics {
                           mana: mana,
                           guildType: guildType,
                           currentPosition: currentPosition,
-                          moveSpeed: moveSpeed,
                           attackType: attackType,
                           ultimateAbility: ultimateAbility)
 }
 
 
-class Hero: HeroProtocol {
-    var armor: Float?
-    var attackPower: Float?
-    var strength: Float?
-    var agility: Float?
-    var intelligence: Float?
-    var hitPoints: Float?
-    var mana: Float?
-    
-    var guildType: GuildType?
-    var currentPosition: CGPoint?
+class RandomHero: HeroProtocol, MovableProtocol {
+    var statistics: HeroStatistics?
     var moveSpeed: Float?
-    var attackType: AttackType?
-    var ultimateAbility: UltimateType?
     
-    required init(statistics: HeroStatisticsProtocol) {
-        armor = statistics.armor
-        attackPower = statistics.attackPower
-        strength = statistics.strength
-        agility = statistics.agility
-        intelligence = statistics.intelligence
-        hitPoints = statistics.hitPoints
-        mana = statistics.mana
-        
-        guildType = statistics.guildType
-        currentPosition = statistics.currentPosition
-        moveSpeed = statistics.moveSpeed
-        attackType = statistics.attackType
-        ultimateAbility = statistics.ultimateAbility
+    required init(statistics: HeroStatistics) {
+        self.statistics = statistics
+        moveSpeed = Float.random(in: 5.01...10.99)
     }
     
-    func updateStatistics(_ statistics: HeroStatisticsProtocol) {
-        armor = statistics.armor
-        attackPower = statistics.attackPower
-        strength = statistics.strength
-        agility = statistics.agility
-        intelligence = statistics.intelligence
-        hitPoints = statistics.hitPoints
-        mana = statistics.mana
-        
-        guildType = statistics.guildType
-        currentPosition = statistics.currentPosition
-        moveSpeed = statistics.moveSpeed
-        attackType = statistics.attackType
-        ultimateAbility = statistics.ultimateAbility
+    func updateStatistics(_ statistics: HeroStatistics) {
+        self.statistics = statistics
+    }
+    
+    func stop() {
+        guard let curPos = statistics?.currentPosition else {
+            print("Current position is not set!")
+            return
+        }
+        print("Hero stopped at x:\(curPos.x) y:\(curPos.y)")
     }
     
     func move(to point: CGPoint) {
-        guard let curPos = currentPosition, moveSpeed != nil else {
+        guard let curPos = statistics?.currentPosition, let moveSpeed = moveSpeed else {
             print("Hero position/move speed is not set")
             return
         }
-        currentPosition = point
+        statistics?.currentPosition = point
         
         let distance = Float(sqrt(pow((point.x - curPos.x), 2) + pow((point.y - curPos.y), 2)))
-        print("Travel(move) time: \(distance/moveSpeed!)")
+        print("Travel(move) time: \(distance/moveSpeed)")
+        
+        stop()
     }
-    
-    func getStatistics() -> HeroStatisticsProtocol? {
-        guard armor != nil, attackPower != nil, strength != nil, agility != nil,
-                intelligence != nil, hitPoints != nil, mana != nil,
-                guildType != nil, currentPosition != nil, moveSpeed != nil,
-              attackType != nil, ultimateAbility != nil else {
-                  return nil
+}
+
+extension RandomHero: Equatable {
+    static func ==(lhs: RandomHero, rhs: RandomHero) -> Bool {
+        guard let lhsStats = lhs.statistics,
+              let rhsStats = rhs.statistics,
+              let lhsMoveSpeed = lhs.moveSpeed,
+              let rhsMoveSpeed = rhs.moveSpeed else {
+                  return false
               }
-        return HeroStatistics(armor: armor!,
-                              attackPower: attackPower!,
-                              strength: strength!,
-                              agility: agility!,
-                              intelligence: intelligence!,
-                              hitPoints: hitPoints!,
-                              mana: mana!,
-                              guildType: guildType!,
-                              currentPosition: currentPosition!,
-                              moveSpeed: moveSpeed!,
-                              attackType: attackType!,
-                              ultimateAbility: ultimateAbility!)
+        return lhsStats == rhsStats && lhsMoveSpeed == rhsMoveSpeed
     }
 }
 
-extension Hero: Equatable {
-    static func ==(lhs: Hero, rhs: Hero) -> Bool {
-        let lhsStats = lhs.getStatistics() as? HeroStatistics
-        let rhsStats = rhs.getStatistics() as? HeroStatistics
-        guard lhsStats != nil, rhsStats != nil else {
-            return false
-        }
-        return lhsStats! == rhsStats!
-    }
-}
-
-class Lich: Hero, HeroFlyable {
-    var flySpeedModifier: Float = 1.4
+class Lich: HeroProtocol, FlyableProtocol {
+    var statistics: HeroStatistics?
     var flySpeed: Float?
     
-    required init(statistics: HeroStatisticsProtocol) {
-        super.init(statistics: statistics)
-        
-        guard moveSpeed != nil else {
-            print("Move speed is not set")
-            return
-        }
-        flySpeed = flySpeedModifier * Float(moveSpeed!)
+    required init(statistics: HeroStatistics) {
+        self.statistics = statistics
+        flySpeed = 14
     }
     
+    func updateStatistics(_ statistics: HeroStatistics) {
+        self.statistics = statistics
+    }
+    
+    func stop() {
+        guard let curPos = statistics?.currentPosition else {
+            print("Current position is not set!")
+            return
+        }
+        print("Hero stopped at x:\(curPos.x) y:\(curPos.y)")
+    }
+        
     func fly(to point: CGPoint) {
-        guard let curPos = currentPosition, flySpeed != nil else {
+        guard let curPos = statistics?.currentPosition, let flySpeed = flySpeed else {
             print("Hero position/move speed is not set")
             return
         }
-        currentPosition = point
+        statistics?.currentPosition = point
         
         let distance = Float(sqrt(pow((point.x - curPos.x), 2) + pow((point.y - curPos.y), 2)))
-        print("Travel(fly) time: \(distance/flySpeed!)")
+        print("Travel(fly) time: \(distance/flySpeed)")
+        
+        stop()
+    }
+}
+
+extension Lich: Equatable {
+    static func ==(lhs: Lich, rhs: Lich) -> Bool {
+        guard let lhsStats = lhs.statistics,
+              let rhsStats = rhs.statistics,
+              let lhsFlySpeed = lhs.flySpeed,
+              let rhsFlySpeed = rhs.flySpeed else {
+                  return false
+              }
+        return lhsStats == rhsStats && lhsFlySpeed == rhsFlySpeed
+    }
+}
+
+class KeeperOfTheGrove: HeroProtocol, FlyableProtocol {
+    var statistics: HeroStatistics?
+    var flySpeed: Float?
+    
+    required init(statistics: HeroStatistics) {
+        self.statistics = statistics
+        flySpeed = 14
+    }
+    
+    func updateStatistics(_ statistics: HeroStatistics) {
+        self.statistics = statistics
+    }
+    
+    func stop() {
+        guard let curPos = statistics?.currentPosition else {
+            print("Current position is not set!")
+            return
+        }
+        print("Hero stopped at x:\(curPos.x) y:\(curPos.y)")
+    }
+        
+    func fly(to point: CGPoint) {
+        guard let curPos = statistics?.currentPosition, let flySpeed = flySpeed else {
+            print("Hero position/move speed is not set")
+            return
+        }
+        statistics?.currentPosition = point
+        
+        let distance = Float(sqrt(pow((point.x - curPos.x), 2) + pow((point.y - curPos.y), 2)))
+        print("Travel(fly) time: \(distance/flySpeed)")
+        
+        stop()
+    }
+}
+
+extension KeeperOfTheGrove: Equatable {
+    static func ==(lhs: KeeperOfTheGrove, rhs: KeeperOfTheGrove) -> Bool {
+        guard let lhsStats = lhs.statistics,
+              let rhsStats = rhs.statistics,
+              let lhsFlySpeed = lhs.flySpeed,
+              let rhsFlySpeed = rhs.flySpeed else {
+                  return false
+              }
+        return lhsStats == rhsStats && lhsFlySpeed == rhsFlySpeed
     }
 }
 
@@ -299,55 +314,53 @@ let lichAllianceStatistics = HeroStatistics(armor: 2,
                                             mana: 300,
                                             guildType: .alliance,
                                             currentPosition: allianceStartPoint,
-                                            moveSpeed: 10,
                                             attackType: .longRange,
                                             ultimateAbility: .lich)
 
 let keeperOfTheGroveOrcStatistics = HeroStatistics(armor: 3,
-                                                attackPower: 23,
-                                                strength: 16,
-                                                agility: 15,
-                                                intelligence: 18,
-                                                hitPoints: 500,
-                                                mana: 270,
-                                                guildType: .orc,
-                                                currentPosition: orcStartPoint,
-                                                moveSpeed: 13,
-                                                attackType: .longRange,
-                                                ultimateAbility: .keeperOfTheGrove)
+                                                   attackPower: 23,
+                                                   strength: 16,
+                                                   agility: 15,
+                                                   intelligence: 18,
+                                                   hitPoints: 500,
+                                                   mana: 270,
+                                                   guildType: .orc,
+                                                   currentPosition: orcStartPoint,
+                                                   attackType: .longRange,
+                                                   ultimateAbility: .keeperOfTheGrove)
 
 // За Альянс!
 let lichAlliance = Lich(statistics: lichAllianceStatistics)
-let hero1Alliance = Hero(statistics: randomStats(guild: .alliance, curPos: allianceStartPoint))
-let hero2Alliance = Hero(statistics: randomStats(guild: .alliance, curPos: allianceStartPoint))
-let hero3Alliance = Hero(statistics: randomStats(guild: .alliance, curPos: allianceStartPoint))
-let hero4Alliance = Hero(statistics: randomStats(guild: .alliance, curPos: allianceStartPoint))
+let hero1Alliance = RandomHero(statistics: randomStats(guild: .alliance, curPos: allianceStartPoint))
+let hero2Alliance = RandomHero(statistics: randomStats(guild: .alliance, curPos: allianceStartPoint))
+let hero3Alliance = RandomHero(statistics: randomStats(guild: .alliance, curPos: allianceStartPoint))
+let hero4Alliance = RandomHero(statistics: randomStats(guild: .alliance, curPos: allianceStartPoint))
 
 // За Орду!
-let keeperOfTheGroveOrc = Hero(statistics: keeperOfTheGroveOrcStatistics)
-let hero1Orc = Hero(statistics: randomStats(guild: .orc, curPos: orcStartPoint))
-let hero2Orc = Hero(statistics: randomStats(guild: .orc, curPos: orcStartPoint))
-let hero3Orc = Hero(statistics: randomStats(guild: .orc, curPos: orcStartPoint))
-let hero4Orc = Hero(statistics: randomStats(guild: .orc, curPos: orcStartPoint))
+let keeperOfTheGroveOrc = KeeperOfTheGrove(statistics: keeperOfTheGroveOrcStatistics)
+let hero1Orc = RandomHero(statistics: randomStats(guild: .orc, curPos: orcStartPoint))
+let hero2Orc = RandomHero(statistics: randomStats(guild: .orc, curPos: orcStartPoint))
+let hero3Orc = RandomHero(statistics: randomStats(guild: .orc, curPos: orcStartPoint))
+let hero4Orc = RandomHero(statistics: randomStats(guild: .orc, curPos: orcStartPoint))
 
 // Далее Задание №5 (необязательно)
 // 5.1 Создайте свои структуры со своими героями и положите их в массив.
 let allHeroes: [HeroProtocol] = [
     lichAlliance, hero1Alliance, hero2Alliance, hero3Alliance, hero4Alliance,
-    keeperOfTheGroveOrc, hero1Orc, hero2Orc, hero3Orc, hero4Orc
+    keeperOfTheGroveOrc, hero1Orc, hero2Orc, hero3Orc, hero4Orc,
 ]
 
 // 5.2 Отсортируйте массивы с героями отделяя Орду от Альянса.
-let sortedByGuild = allHeroes.sorted(by: {$0.guildType! < $1.guildType!})
+let sortedByGuild = allHeroes.sorted(by: { $0.statistics!.guildType < $1.statistics!.guildType })
 for element in sortedByGuild {
-    print(element.guildType!, terminator: " ")
+    print(element.statistics!.guildType, terminator: " ")
 }
 print()
 
 // 5.3 Отсортируйте по мощности атаки attackPower
-let sortedByAttackPower = allHeroes.sorted(by: {$0.attackPower! > $1.attackPower!})
+let sortedByAttackPower = allHeroes.sorted(by: { $0.statistics!.attackPower > $1.statistics!.attackPower })
 for element in sortedByAttackPower {
-    print(String(format: "\(element.guildType!): %.2f", element.attackPower!), terminator: " ")
+    print(String(format: "\(element.statistics!.guildType): %.2f", element.statistics!.attackPower), terminator: " ")
 }
 
 // 5.4 Найдите самого сильного в массиве (attackPower)
@@ -356,23 +369,23 @@ let theMostPowerfulAttackPower = sortedByAttackPower[0]
 var maxMana: Float = 0
 var theMostPowerfulMagician: HeroProtocol? = nil
 for element in allHeroes {
-    if element.mana! > maxMana {
-        maxMana = element.mana!
+    if element.statistics!.mana > maxMana {
+        maxMana = element.statistics!.mana
         theMostPowerfulMagician = element
     }
 }
 print()
 
 // или того у кого больше всего mana
-let sortedByMana = allHeroes.sorted(by: {$0.mana! > $1.mana!})
-print("Is he the most powerful magician: \(theMostPowerfulMagician! as! Hero == sortedByMana[0] as! Hero)")
+let sortedByMana: HeroProtocol = allHeroes.sorted(by: { $0.statistics!.mana > $1.statistics!.mana })[0]
+print("Is he the most powerful magician: \(theMostPowerfulMagician!.statistics!.mana == sortedByMana.statistics!.mana)")
 
 // Задание №6 (необязательно)
 // Придумайте как можно использовать Dictionary для хранения героев
 
 var armySize: [GuildType : Int] = [:]
 for element in allHeroes {
-    if let army = element.guildType {
+    if let army = element.statistics?.guildType {
         armySize[army, default: 0] += 1
     }
 }
