@@ -9,3 +9,7 @@
 ## Exercise 02
 1. [OOP -> POP](/2_task/1_oop->pop.playground/Contents.swift)
 2. [Make enum conform protocols Comparable&Equitable](/2_task/2_enum_to_comparable_equatable.playground/Contents.swift)
+
+## Exercise 03
+1. [non-Solid -> DRY, KISS, SOLID]()
+2. [Additional card view with email validation](/3_task/2_liveCodingSession/2_liveCodingSession/ViewController.swift)
