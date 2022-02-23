@@ -50,7 +50,6 @@ extension ViewController {
 }
 
 class cardView: UIView{
-    var view: UIView
     var textField: UITextField
     var validationButton: UIButton
     var validationStatusLabel: UILabel
@@ -60,7 +59,6 @@ class cardView: UIView{
     }
     
     init(textFieldPlaceholder: String) {
-        view = UIView()
         textField = UITextField()
         validationButton = UIButton()
         validationStatusLabel = UILabel()
@@ -74,13 +72,13 @@ class cardView: UIView{
     }
     
     func setupView(){
-        view.backgroundColor = .secondarySystemBackground
-        view.layer.cornerRadius = 12
-        view.translatesAutoresizingMaskIntoConstraints = false
+        self.backgroundColor = .secondarySystemBackground
+        self.layer.cornerRadius = 12
+        self.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(textField)
-        view.addSubview(validationButton)
-        view.addSubview(validationStatusLabel)
+        self.addSubview(textField)
+        self.addSubview(validationButton)
+        self.addSubview(validationStatusLabel)
     }
     
     func setupTextField(placeholder: String) {
@@ -106,18 +104,18 @@ class cardView: UIView{
     
     func setupInnerConstraints(){
         NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-            textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            textField.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+            textField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             
             validationButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 20),
-            validationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            validationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            validationButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            validationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             
             validationStatusLabel.topAnchor.constraint(equalTo: validationButton.bottomAnchor, constant: 20),
-            validationStatusLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            validationStatusLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            validationStatusLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+            validationStatusLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            validationStatusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            validationStatusLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
         ])
     }
 }
