@@ -13,3 +13,6 @@
 ## Exercise 03
 1. [non-Solid -> DRY, KISS, SOLID]()
 2. [Additional card view with email validation](/3_task/2_liveCodingSession/2_liveCodingSession/ViewController.swift)
+
+## Exercise 04
+99. [Will try MVVM once](/4_task/99_TryingMVVM/99_TryingMVVM/)
