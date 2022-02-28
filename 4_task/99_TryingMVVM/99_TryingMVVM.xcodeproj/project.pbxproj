@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD64954A27CD6ADD0040457D /* BillingOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64954927CD6ADD0040457D /* BillingOverviewView.swift */; };
 		CD8D6D8F27C923C00029AF9F /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D6D8E27C923C00029AF9F /* DescriptionView.swift */; };
 		CDA5951327C83B9100BD51AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA5951227C83B9100BD51AF /* AppDelegate.swift */; };
 		CDA5951527C83B9100BD51AF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA5951427C83B9100BD51AF /* SceneDelegate.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD64954927CD6ADD0040457D /* BillingOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingOverviewView.swift; sourceTree = "<group>"; };
 		CD8D6D8E27C923C00029AF9F /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		CDA5950F27C83B9100BD51AF /* 99_TryingMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 99_TryingMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDA5951227C83B9100BD51AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			children = (
 				CD8D6D8E27C923C00029AF9F /* DescriptionView.swift */,
 				CDEA314027C9264200E724F3 /* ShoppingListView.swift */,
+				CD64954927CD6ADD0040457D /* BillingOverviewView.swift */,
 				CDEA314227C989BC00E724F3 /* SeparatorView.swift */,
 			);
 			path = Views;
@@ -166,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDA5951727C83B9100BD51AF /* ViewController.swift in Sources */,
+				CD64954A27CD6ADD0040457D /* BillingOverviewView.swift in Sources */,
 				CDEA314127C9264200E724F3 /* ShoppingListView.swift in Sources */,
 				CDEA314327C989BC00E724F3 /* SeparatorView.swift in Sources */,
 				CDEA313D27C9246200E724F3 /* ProductDescription.swift in Sources */,

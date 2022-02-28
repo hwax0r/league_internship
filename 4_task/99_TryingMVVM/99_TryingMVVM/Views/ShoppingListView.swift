@@ -12,7 +12,7 @@ protocol ShoppingListViewProtocol {
   var productDescriptionData: [ProductDescriptionProtocol] { get }
 }
 
-class ShoppingListView: UITableView, ShoppingListViewProtocol {
+final class ShoppingListView: UITableView, ShoppingListViewProtocol {
   var productDescriptionData: [ProductDescriptionProtocol]
   required init(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
@@ -43,6 +43,7 @@ extension ShoppingListView: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = self.dequeueReusableCell(withIdentifier: "productDescriptionCell", for: indexPath)
+    cell.selectionStyle = .none
     var content = cell.defaultContentConfiguration()
     content.text = "\(indexPath.row) \(productDescriptionData[indexPath.row].name) \(productDescriptionData[indexPath.row].pricePerUnit)*\(productDescriptionData[indexPath.row].numberOfUnits)=\(productDescriptionData[indexPath.row].totalSum)"
     cell.contentConfiguration = content

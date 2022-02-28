@@ -39,7 +39,7 @@ final class DesriptionView: UIView, DesriptionViewProtocol {
     super.init(frame: .zero)
 
     configureView()
-    setupConstrints()
+    setupConstraints()
   }
 
   func configureView() {
@@ -53,7 +53,7 @@ final class DesriptionView: UIView, DesriptionViewProtocol {
     self.addSubview(additionalDataView)
   }
 
-  func setupConstrints(){
+  func setupConstraints(){
     NSLayoutConstraint.activate([
       companyTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 30),
       companyTitle.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),

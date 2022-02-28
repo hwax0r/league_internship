@@ -33,12 +33,14 @@ class ViewController: UIViewController {
     let separatorView = SeparatorView()
     let shoppingListView = ShoppingListView(billingInformation: billingInformation)
     let secondSeparatorView = SeparatorView()
+    let billingOverviewView = BillingOverviewView(billingInformation: billingInformation)
 
     view.backgroundColor = .secondarySystemBackground
     view.addSubview(descriptionView)
     view.addSubview(separatorView)
     view.addSubview(shoppingListView)
     view.addSubview(secondSeparatorView)
+    view.addSubview(billingOverviewView)
 
     NSLayoutConstraint.activate([
       descriptionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -59,6 +61,10 @@ class ViewController: UIViewController {
       secondSeparatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       secondSeparatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       secondSeparatorView.bottomAnchor.constraint(equalTo: shoppingListView.bottomAnchor, constant: 1),
+
+      billingOverviewView.topAnchor.constraint(equalTo: secondSeparatorView.bottomAnchor, constant: 20),
+      billingOverviewView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+      billingOverviewView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
     ])
   }
 
