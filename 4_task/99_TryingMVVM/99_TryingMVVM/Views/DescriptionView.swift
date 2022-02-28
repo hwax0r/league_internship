@@ -15,7 +15,7 @@ protocol DesriptionViewProtocol: AnyObject {
 
   var additionalDataView: AdditionalDataView { get }
 
-  init(billingInformation: BillingInformation)
+  init(billingInformation: BillingInformationProtocol)
 }
 
 final class DesriptionView: UIView, DesriptionViewProtocol {
@@ -29,7 +29,7 @@ final class DesriptionView: UIView, DesriptionViewProtocol {
     fatalError("init(coder:) has not been implemented")
   }
 
-  required init(billingInformation: BillingInformation) {
+  required init(billingInformation: BillingInformationProtocol) {
     companyTitle = CompanyTitle(companyTitle: billingInformation.companyTitle)
     indi­vid­ualTax­pay­erNum­ber = Indi­vid­ualTax­pay­erNum­ber(indi­vid­ualTax­pay­erNum­ber: billingInformation.indi­vid­ualTax­pay­erNum­ber)
     billingAdress = BillingAdress(billingAdress: billingInformation.billingAdress)
@@ -70,12 +70,11 @@ final class DesriptionView: UIView, DesriptionViewProtocol {
       chequeType.topAnchor.constraint(equalTo: billingAdress.bottomAnchor, constant: 5),
       chequeType.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
       chequeType.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-      chequeType.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
 
-//      additionalDataView.topAnchor.constraint(equalTo: chequeType.bottomAnchor, constant: 10),
-//      additionalDataView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-//      additionalDataView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-//      additionalDataView.bottomAnchor.constraint(equalTo: self.topAnchor, constant: 200),
+      additionalDataView.topAnchor.constraint(equalTo: chequeType.bottomAnchor, constant: 10),
+      additionalDataView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+      additionalDataView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+      additionalDataView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15),
     ])
   }
 
@@ -184,7 +183,7 @@ final class WorkingShift: UILabel {
 
   func configureLabel() {
     self.text = workingShift
-    self.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+    self.font = UIFont.systemFont(ofSize: 17, weight: .regular)
     self.textAlignment = NSTextAlignment.center
     self.textColor = .black
     self.translatesAutoresizingMaskIntoConstraints = false
@@ -212,7 +211,7 @@ final class ChequeDate: UILabel {
 
   func configureLabel() {
     self.text = chequeDateString
-    self.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+    self.font = UIFont.systemFont(ofSize: 17, weight: .regular)
     self.textAlignment = NSTextAlignment.center
     self.textColor = .black
     self.translatesAutoresizingMaskIntoConstraints = false
@@ -236,10 +235,11 @@ final class AdditionalDataView: UIStackView {
   }
 
   func configureStackView() {
-    self.axis = .vertical
+    self.axis = .horizontal
     self.spacing = 20.0
     self.alignment = .fill
     self.distribution = .equalCentering
+    self.translatesAutoresizingMaskIntoConstraints = false
 
     self.addArrangedSubview(workingShift)
     self.addArrangedSubview(chequeDate)

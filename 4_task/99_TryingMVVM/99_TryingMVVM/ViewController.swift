@@ -31,22 +31,34 @@ class ViewController: UIViewController {
     )
     let descriptionView = DesriptionView(billingInformation: billingInformation)
     let separatorView = SeparatorView()
-    view.addSubview(separatorView)
+    let shoppingListView = ShoppingListView(billingInformation: billingInformation)
+    let secondSeparatorView = SeparatorView()
 
     view.backgroundColor = .secondarySystemBackground
-
     view.addSubview(descriptionView)
+    view.addSubview(separatorView)
+    view.addSubview(shoppingListView)
+    view.addSubview(secondSeparatorView)
 
     NSLayoutConstraint.activate([
-      descriptionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-      descriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-      descriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-//      descriptionView.bottomAnchor.constraint(equalTo: descriptionView.bottomAnchor),
+      descriptionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      descriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      descriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 
       separatorView.topAnchor.constraint(equalTo: descriptionView.bottomAnchor),
-      separatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-      separatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+      separatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      separatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       separatorView.bottomAnchor.constraint(equalTo: descriptionView.bottomAnchor, constant: 1),
+
+      shoppingListView.topAnchor.constraint(equalTo: separatorView.bottomAnchor),
+      shoppingListView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      shoppingListView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      shoppingListView.bottomAnchor.constraint(equalTo: shoppingListView.topAnchor, constant: 450),
+
+      secondSeparatorView.topAnchor.constraint(equalTo: shoppingListView.bottomAnchor),
+      secondSeparatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      secondSeparatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      secondSeparatorView.bottomAnchor.constraint(equalTo: shoppingListView.bottomAnchor, constant: 1),
     ])
   }
 
