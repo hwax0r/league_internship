@@ -9,8 +9,7 @@ import Foundation
 import UIKit
 
 protocol BillingOverviewProtocol {
-  // TODO: Convert to Decimal
-  var chequeSum: Float { get }
+  var chequeSum: Decimal { get }
   var totalNameLabel: TotalNameLabel { get }
   var totalSumLabel: TotalSumLabel { get }
 
@@ -18,7 +17,7 @@ protocol BillingOverviewProtocol {
 }
 
 final class BillingOverviewView: UIStackView, BillingOverviewProtocol {
-  var chequeSum: Float
+  var chequeSum: Decimal
   var totalNameLabel: TotalNameLabel
   var totalSumLabel: TotalSumLabel
 
@@ -28,14 +27,14 @@ final class BillingOverviewView: UIStackView, BillingOverviewProtocol {
 
   init(billingInformation: BillingInformationProtocol) {
     self.chequeSum = {
-      var sum: Float = 0
+      var sum: Decimal = 0
       for product in billingInformation.shoppingList {
         sum += product.totalSum
       }
       return sum
     }()
     totalNameLabel = TotalNameLabel()
-    totalSumLabel = TotalSumLabel(totalSumFloat: chequeSum)
+    totalSumLabel = TotalSumLabel(totalSumDecimal: chequeSum)
     super.init(frame: .zero)
 
     configureStackView()
@@ -79,8 +78,8 @@ final class TotalSumLabel: UILabel {
     fatalError("init(coder:) has not been implemented")
   }
 
-  init(totalSumFloat: Float) {
-    self.totalSum = String(totalSumFloat)
+  init(totalSumDecimal: Decimal) {
+    self.totalSum = "\(totalSumDecimal)"
     super.init(frame: .zero)
 
     configureLabel()

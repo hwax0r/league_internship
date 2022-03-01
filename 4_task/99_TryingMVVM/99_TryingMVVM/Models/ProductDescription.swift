@@ -9,23 +9,23 @@ import Foundation
 
 protocol ProductDescriptionProtocol {
   var name: String { get set }
-  var pricePerUnit: Float { get set }
-  var numberOfUnits: Int { get set }
-  var totalSum: Float { get set }
+  var pricePerUnit: Decimal { get set }
+  var numberOfUnits: Decimal { get set }
+  var totalSum: Decimal { get set }
 
-  init(name: String, pricePerUnit: Float, numberOfUnits: Int)
+  init(name: String, pricePerUnit: Decimal, numberOfUnits: Decimal)
 }
 
 struct ProductDescription: ProductDescriptionProtocol {
   var name: String
-  var pricePerUnit: Float
-  var numberOfUnits: Int
-  var totalSum: Float
+  var pricePerUnit: Decimal
+  var numberOfUnits: Decimal
+  var totalSum: Decimal
 
-  init(name: String, pricePerUnit: Float, numberOfUnits: Int){
+  init(name: String, pricePerUnit: Decimal, numberOfUnits: Decimal){
     self.name = name
     self.pricePerUnit = pricePerUnit
     self.numberOfUnits = numberOfUnits
-    self.totalSum = pricePerUnit * Float(numberOfUnits)
+    self.totalSum = pricePerUnit * numberOfUnits
   }
 }

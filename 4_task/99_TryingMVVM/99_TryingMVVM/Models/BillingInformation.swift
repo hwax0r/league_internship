@@ -22,6 +22,18 @@ protocol BillingInformationProtocol {
        billingAdress: String, chequeType: String,
        workingShift: String, chequeDate: Date,
        shoppingList: [ProductDescriptionProtocol])
+
+  func chequeSum() -> Decimal
+}
+
+extension BillingInformationProtocol {
+  func chequeSum() -> Decimal {
+    var sum: Decimal = 0
+    for product in shoppingList {
+      sum += product.totalSum
+    }
+    return sum
+  }
 }
 
 struct BillingInformation: BillingInformationProtocol {

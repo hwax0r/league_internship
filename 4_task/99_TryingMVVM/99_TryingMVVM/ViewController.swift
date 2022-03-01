@@ -55,7 +55,7 @@ class ViewController: UIViewController {
       shoppingListView.topAnchor.constraint(equalTo: separatorView.bottomAnchor),
       shoppingListView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       shoppingListView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      shoppingListView.bottomAnchor.constraint(equalTo: shoppingListView.topAnchor, constant: 450),
+      shoppingListView.bottomAnchor.constraint(lessThanOrEqualTo: shoppingListView.topAnchor, constant: 450),
 
       secondSeparatorView.topAnchor.constraint(equalTo: shoppingListView.bottomAnchor),
       secondSeparatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

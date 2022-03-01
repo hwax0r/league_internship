@@ -56,6 +56,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		CD9CDB9C27CE9609000ACBE6 /* Description */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Description;
+			sourceTree = "<group>";
+		};
 		CDA5950627C83B9100BD51AF = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +82,7 @@
 		CDA5951127C83B9100BD51AF /* 99_TryingMVVM */ = {
 			isa = PBXGroup;
 			children = (
+				CD9CDB9C27CE9609000ACBE6 /* Description */,
 				CD8D6D9027C923E50029AF9F /* Models */,
 				CDA5952627C9238500BD51AF /* Views */,
 				CDA5951227C83B9100BD51AF /* AppDelegate.swift */,
