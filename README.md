@@ -16,3 +16,6 @@
 
 ## Exercise 04
 99. [Will try MVVM once](/4_task/99_TryingMVVM/99_TryingMVVM/)
+
+## Exrecise 05
+1. [Navigation view controller pushViewController and present modally]()

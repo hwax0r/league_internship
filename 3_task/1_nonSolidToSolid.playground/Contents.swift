@@ -9,9 +9,36 @@ import UIKit
 
 class SRPViewController: UIViewController {
 
+  // MARK: - Dummies
+  enum ProportionType {
+    case paleo
+    case keto
+  }
+
+  enum CaloriesCalculationType: Int {
+    case mifflin = 1200
+    case harrisBenedict = 1400
+  }
+
+  struct Nutrients {
+    var carbs: Int
+    var fats: Int
+    var proteins: Int
+  }
+
+  // MARK: - Nutrient Calculator Class
   struct NutrientCalculator {
-    func calculateDailtyNutrients(proportionType: ProportionType,
-                                  caloriesCalculatorType: CaloriesCalculationType) -> Nutrients {
+    // Зачем нужна структура, если у неё нет полей?
+    private var proportionType: ProportionType
+    private var caloriesCalculatorType: CaloriesCalculationType
+
+    init(proportionType: ProportionType, caloriesCalculatorType: CaloriesCalculationType){
+      self.proportionType = proportionType
+      self.caloriesCalculatorType = caloriesCalculatorType
+    }
+
+    func calculateDailtyNutrients() -> Nutrients {
+      // ничто в коде не говорит об использовании targetCalories. Непонятно что делать
       var targetCalories: Int
       switch caloriesCalculatorType {
       case .mifflin:
@@ -36,6 +63,12 @@ class SRPViewController: UIViewController {
 
       return nutrients
     }
+
+    func someCalculationsOverCalories(_ calories: Int) -> (Int, Int, Int) {
+      if calories == 1200 {
+        return (carbs: 4, fats: 10, proteins: 20)
+      } else if
+    }
   }
 
   // как правильно?
@@ -43,20 +76,4 @@ class SRPViewController: UIViewController {
 }
 
 
-// MARK: - Dummies
 
-enum ProportionType {
-  case paleo
-  case keto
-}
-
-enum CaloriesCalculationType {
-  case mifflin
-  case harrisBenedict
-}
-
-struct Nutrients {
-  var carbs: Int
-  var fats: Int
-  var proteins: Int
-}
