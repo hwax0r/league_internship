@@ -5,10 +5,9 @@
 //  Created by David Sergeev on 28.02.2022.
 //
 
-import Foundation
 import UIKit
 
-final class BillingOverviewView: UIStackView {
+final class BillingOverviewView: UIView {
   private var chequeSum: Decimal
   private var totalNameLabel: TotalNameLabel
   private var totalSumLabel: TotalSumLabel
@@ -23,21 +22,27 @@ final class BillingOverviewView: UIStackView {
     totalSumLabel = TotalSumLabel(totalSumDecimal: chequeSum)
     super.init(frame: .zero)
 
-    configureStackView()
+    configureView()
   }
 
 }
 
 // MARK: - Private methods
 extension BillingOverviewView {
-  private func configureStackView() {
-    self.axis = .horizontal
-    self.spacing = 20.0
-    self.alignment = .fill
-    self.distribution = .equalCentering
+  private func configureView() {
     self.translatesAutoresizingMaskIntoConstraints = false
 
-    self.addArrangedSubview(totalNameLabel)
-    self.addArrangedSubview(totalSumLabel)
+    self.addSubview(totalNameLabel)
+    self.addSubview(totalSumLabel)
+
+    NSLayoutConstraint.activate([
+      totalNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+      totalNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
+      totalNameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 5),
+
+      totalSumLabel.topAnchor.constraint(equalTo: totalNameLabel.topAnchor),
+      totalSumLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 5),
+      totalSumLabel.bottomAnchor.constraint(equalTo: totalNameLabel.bottomAnchor),
+    ])
   }
 }
