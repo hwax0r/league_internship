@@ -8,31 +8,17 @@
 import Foundation
 import UIKit
 
-protocol BillingOverviewProtocol {
-  var chequeSum: Decimal { get }
-  var totalNameLabel: TotalNameLabel { get }
-  var totalSumLabel: TotalSumLabel { get }
-
-  init(billingInformation: BillingInformationProtocol)
-}
-
-final class BillingOverviewView: UIStackView, BillingOverviewProtocol {
-  var chequeSum: Decimal
-  var totalNameLabel: TotalNameLabel
-  var totalSumLabel: TotalSumLabel
+final class BillingOverviewView: UIStackView {
+  private var chequeSum: Decimal
+  private var totalNameLabel: TotalNameLabel
+  private var totalSumLabel: TotalSumLabel
 
   required init(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
   init(billingInformation: BillingInformationProtocol) {
-    self.chequeSum = {
-      var sum: Decimal = 0
-      for product in billingInformation.shoppingList {
-        sum += product.totalSum
-      }
-      return sum
-    }()
+    self.chequeSum = billingInformation.chequeSum()
     totalNameLabel = TotalNameLabel()
     totalSumLabel = TotalSumLabel(totalSumDecimal: chequeSum)
     super.init(frame: .zero)
@@ -40,7 +26,11 @@ final class BillingOverviewView: UIStackView, BillingOverviewProtocol {
     configureStackView()
   }
 
-  func configureStackView() {
+}
+
+// MARK: - Private methods
+extension BillingOverviewView {
+  private func configureStackView() {
     self.axis = .horizontal
     self.spacing = 20.0
     self.alignment = .fill
@@ -51,46 +41,3 @@ final class BillingOverviewView: UIStackView, BillingOverviewProtocol {
     self.addArrangedSubview(totalSumLabel)
   }
 }
-
-final class TotalNameLabel: UILabel {
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-
-  init() {
-    super.init(frame: .zero)
-
-    configureLabel()
-  }
-
-  func configureLabel() {
-    self.text = "Итог:"
-    self.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-    self.textAlignment = NSTextAlignment.left
-    self.textColor = .black
-    self.translatesAutoresizingMaskIntoConstraints = false
-  }
-}
-
-final class TotalSumLabel: UILabel {
-  var totalSum: String
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-
-  init(totalSumDecimal: Decimal) {
-    self.totalSum = "\(totalSumDecimal)"
-    super.init(frame: .zero)
-
-    configureLabel()
-  }
-
-  func configureLabel() {
-    self.text = totalSum
-    self.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-    self.textAlignment = NSTextAlignment.right
-    self.textColor = .black
-    self.translatesAutoresizingMaskIntoConstraints = false
-  }
-}
-

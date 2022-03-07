@@ -8,27 +8,31 @@
 import UIKit
 
 class ViewController: UIViewController {
+  let billingInformation = BillingInformation(
+    companyTitle: "ЯНДЕКС.МЕДИАСЕРВИСЫ",
+    indi­vid­ualTax­pay­erNum­ber: "9705121040",
+    billingAdress: "391434, Россия, Рязанская обл., г. Сасово, ул. Пушкина, д. 21",
+    chequeType: "Кассовый чек. Приход",
+    workingShift: "294",
+    chequeDate: Date.init(timeIntervalSince1970: 1645471740),
+    shoppingList: [
+      ProductDescription(name: "Билет в филармонию", pricePerUnit: 3500, numberOfUnits: 2),
+      ProductDescription(name: "Билет в кинотеатр", pricePerUnit: 650, numberOfUnits: 2),
+      ProductDescription(name: "Билет на выставку", pricePerUnit: 450, numberOfUnits: 3),
+    ]
+  )
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
+
     configureView()
   }
 
-  func configureView() {
-    let billingInformation = BillingInformation(
-      companyTitle: "ЯНДЕКС.МЕДИАСЕРВИСЫ",
-      indi­vid­ualTax­pay­erNum­ber: "9705121040",
-      billingAdress: "391434, Россия, Рязанская обл., г. Сасово, ул. Пушкина, д. 21",
-      chequeType: "Кассовый чек. Приход",
-      workingShift: "294",
-      chequeDate: Date.init(timeIntervalSince1970: 1645471740),
-      shoppingList: [
-        ProductDescription(name: "Билет в филармонию", pricePerUnit: 3500, numberOfUnits: 2),
-        ProductDescription(name: "Билет в кинотеатр", pricePerUnit: 650, numberOfUnits: 2),
-        ProductDescription(name: "Билет на выставку", pricePerUnit: 450, numberOfUnits: 3),
-      ]
-    )
+}
+
+// MARK: - Private methods
+extension ViewController {
+  private func configureView() {
     let descriptionView = DesriptionView(billingInformation: billingInformation)
     let separatorView = SeparatorView()
     let shoppingListView = ShoppingListView(billingInformation: billingInformation)
@@ -67,6 +71,4 @@ class ViewController: UIViewController {
       billingOverviewView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
     ])
   }
-
 }
-

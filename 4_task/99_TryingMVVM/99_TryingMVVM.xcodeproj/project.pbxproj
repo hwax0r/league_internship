@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD03895627D5343100A1CF2D /* CompanyTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03895527D5343100A1CF2D /* CompanyTitleLabel.swift */; };
+		CD03895827D5345F00A1CF2D /* Indi­vid­ualTax­pay­erNum­berLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03895727D5345F00A1CF2D /* Indi­vid­ualTax­pay­erNum­berLabel.swift */; };
+		CD03895A27D5347D00A1CF2D /* BillingAdressLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03895927D5347D00A1CF2D /* BillingAdressLabel.swift */; };
+		CD03895C27D5349B00A1CF2D /* ChequeTypeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03895B27D5349B00A1CF2D /* ChequeTypeLabel.swift */; };
+		CD03895E27D534BB00A1CF2D /* WorkingShiftLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03895D27D534BB00A1CF2D /* WorkingShiftLabel.swift */; };
+		CD03896027D5351700A1CF2D /* ChequeDateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03895F27D5351700A1CF2D /* ChequeDateLabel.swift */; };
+		CD03896327D64C1800A1CF2D /* TotalNameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03896227D64C1800A1CF2D /* TotalNameLabel.swift */; };
+		CD03896527D64C3A00A1CF2D /* TotalSumLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03896427D64C3A00A1CF2D /* TotalSumLabel.swift */; };
 		CD64954A27CD6ADD0040457D /* BillingOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64954927CD6ADD0040457D /* BillingOverviewView.swift */; };
 		CD8D6D8F27C923C00029AF9F /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D6D8E27C923C00029AF9F /* DescriptionView.swift */; };
 		CDA5951327C83B9100BD51AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA5951227C83B9100BD51AF /* AppDelegate.swift */; };
@@ -21,6 +29,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD03895527D5343100A1CF2D /* CompanyTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyTitleLabel.swift; sourceTree = "<group>"; };
+		CD03895727D5345F00A1CF2D /* Indi­vid­ualTax­pay­erNum­berLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Indi­vid­ualTax­pay­erNum­berLabel.swift"; sourceTree = "<group>"; };
+		CD03895927D5347D00A1CF2D /* BillingAdressLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingAdressLabel.swift; sourceTree = "<group>"; };
+		CD03895B27D5349B00A1CF2D /* ChequeTypeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChequeTypeLabel.swift; sourceTree = "<group>"; };
+		CD03895D27D534BB00A1CF2D /* WorkingShiftLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingShiftLabel.swift; sourceTree = "<group>"; };
+		CD03895F27D5351700A1CF2D /* ChequeDateLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChequeDateLabel.swift; sourceTree = "<group>"; };
+		CD03896227D64C1800A1CF2D /* TotalNameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalNameLabel.swift; sourceTree = "<group>"; };
+		CD03896427D64C3A00A1CF2D /* TotalSumLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalSumLabel.swift; sourceTree = "<group>"; };
 		CD64954927CD6ADD0040457D /* BillingOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingOverviewView.swift; sourceTree = "<group>"; };
 		CD8D6D8E27C923C00029AF9F /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		CDA5950F27C83B9100BD51AF /* 99_TryingMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 99_TryingMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +63,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD03896127D64BF700A1CF2D /* BillingOverview */ = {
+			isa = PBXGroup;
+			children = (
+				CD03896227D64C1800A1CF2D /* TotalNameLabel.swift */,
+				CD03896427D64C3A00A1CF2D /* TotalSumLabel.swift */,
+			);
+			path = BillingOverview;
+			sourceTree = "<group>";
+		};
 		CD8D6D9027C923E50029AF9F /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +84,12 @@
 		CD9CDB9C27CE9609000ACBE6 /* Description */ = {
 			isa = PBXGroup;
 			children = (
+				CD03895527D5343100A1CF2D /* CompanyTitleLabel.swift */,
+				CD03895727D5345F00A1CF2D /* Indi­vid­ualTax­pay­erNum­berLabel.swift */,
+				CD03895927D5347D00A1CF2D /* BillingAdressLabel.swift */,
+				CD03895B27D5349B00A1CF2D /* ChequeTypeLabel.swift */,
+				CD03895D27D534BB00A1CF2D /* WorkingShiftLabel.swift */,
+				CD03895F27D5351700A1CF2D /* ChequeDateLabel.swift */,
 			);
 			path = Description;
 			sourceTree = "<group>";
@@ -82,6 +113,7 @@
 		CDA5951127C83B9100BD51AF /* 99_TryingMVVM */ = {
 			isa = PBXGroup;
 			children = (
+				CD03896127D64BF700A1CF2D /* BillingOverview */,
 				CD9CDB9C27CE9609000ACBE6 /* Description */,
 				CD8D6D9027C923E50029AF9F /* Models */,
 				CDA5952627C9238500BD51AF /* Views */,
@@ -178,13 +210,21 @@
 			files = (
 				CDA5951727C83B9100BD51AF /* ViewController.swift in Sources */,
 				CD64954A27CD6ADD0040457D /* BillingOverviewView.swift in Sources */,
+				CD03895A27D5347D00A1CF2D /* BillingAdressLabel.swift in Sources */,
 				CDEA314127C9264200E724F3 /* ShoppingListView.swift in Sources */,
+				CD03896327D64C1800A1CF2D /* TotalNameLabel.swift in Sources */,
+				CD03895C27D5349B00A1CF2D /* ChequeTypeLabel.swift in Sources */,
+				CD03895E27D534BB00A1CF2D /* WorkingShiftLabel.swift in Sources */,
+				CD03896527D64C3A00A1CF2D /* TotalSumLabel.swift in Sources */,
 				CDEA314327C989BC00E724F3 /* SeparatorView.swift in Sources */,
+				CD03896027D5351700A1CF2D /* ChequeDateLabel.swift in Sources */,
+				CD03895827D5345F00A1CF2D /* Indi­vid­ualTax­pay­erNum­berLabel.swift in Sources */,
 				CDEA313D27C9246200E724F3 /* ProductDescription.swift in Sources */,
 				CDA5951327C83B9100BD51AF /* AppDelegate.swift in Sources */,
 				CDA5951527C83B9100BD51AF /* SceneDelegate.swift in Sources */,
 				CDEA313F27C9248600E724F3 /* BillingInformation.swift in Sources */,
 				CD8D6D8F27C923C00029AF9F /* DescriptionView.swift in Sources */,
+				CD03895627D5343100A1CF2D /* CompanyTitleLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

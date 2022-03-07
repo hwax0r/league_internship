@@ -7,10 +7,7 @@
 
 import UIKit
 
-protocol SeparatorViewProtocol {
-}
-
-class SeparatorView: UIView, SeparatorViewProtocol {
+final class SeparatorView: UIView {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -20,8 +17,11 @@ class SeparatorView: UIView, SeparatorViewProtocol {
 
     configureView()
   }
+}
 
-  func configureView() {
+// MARK: - Private methods
+extension SeparatorView {
+  private func configureView() {
     self.backgroundColor = .black
     self.translatesAutoresizingMaskIntoConstraints = false
   }
