@@ -15,6 +15,10 @@
 		CD03896027D5351700A1CF2D /* ChequeDateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03895F27D5351700A1CF2D /* ChequeDateLabel.swift */; };
 		CD03896327D64C1800A1CF2D /* TotalNameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03896227D64C1800A1CF2D /* TotalNameLabel.swift */; };
 		CD03896527D64C3A00A1CF2D /* TotalSumLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03896427D64C3A00A1CF2D /* TotalSumLabel.swift */; };
+		CD03896927D682F400A1CF2D /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03896827D682F400A1CF2D /* DescriptionViewController.swift */; };
+		CD03896B27D68D8B00A1CF2D /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03896A27D68D8B00A1CF2D /* ShoppingListViewController.swift */; };
+		CD03896D27D6911C00A1CF2D /* BillingOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03896C27D6911C00A1CF2D /* BillingOverviewViewController.swift */; };
+		CD03897027D77F5500A1CF2D /* ShoppingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03896F27D77F5500A1CF2D /* ShoppingListTableViewCell.swift */; };
 		CD64954A27CD6ADD0040457D /* BillingOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64954927CD6ADD0040457D /* BillingOverviewView.swift */; };
 		CD8D6D8F27C923C00029AF9F /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D6D8E27C923C00029AF9F /* DescriptionView.swift */; };
 		CDA5951327C83B9100BD51AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA5951227C83B9100BD51AF /* AppDelegate.swift */; };
@@ -37,6 +41,10 @@
 		CD03895F27D5351700A1CF2D /* ChequeDateLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChequeDateLabel.swift; sourceTree = "<group>"; };
 		CD03896227D64C1800A1CF2D /* TotalNameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalNameLabel.swift; sourceTree = "<group>"; };
 		CD03896427D64C3A00A1CF2D /* TotalSumLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalSumLabel.swift; sourceTree = "<group>"; };
+		CD03896827D682F400A1CF2D /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
+		CD03896A27D68D8B00A1CF2D /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
+		CD03896C27D6911C00A1CF2D /* BillingOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingOverviewViewController.swift; sourceTree = "<group>"; };
+		CD03896F27D77F5500A1CF2D /* ShoppingListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewCell.swift; sourceTree = "<group>"; };
 		CD64954927CD6ADD0040457D /* BillingOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingOverviewView.swift; sourceTree = "<group>"; };
 		CD8D6D8E27C923C00029AF9F /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		CDA5950F27C83B9100BD51AF /* 99_TryingMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 99_TryingMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +78,24 @@
 				CD03896427D64C3A00A1CF2D /* TotalSumLabel.swift */,
 			);
 			path = BillingOverview;
+			sourceTree = "<group>";
+		};
+		CD03896727D682D400A1CF2D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CD03896827D682F400A1CF2D /* DescriptionViewController.swift */,
+				CD03896A27D68D8B00A1CF2D /* ShoppingListViewController.swift */,
+				CD03896C27D6911C00A1CF2D /* BillingOverviewViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CD03896E27D77F0E00A1CF2D /* ShoppingList */ = {
+			isa = PBXGroup;
+			children = (
+				CD03896F27D77F5500A1CF2D /* ShoppingListTableViewCell.swift */,
+			);
+			path = ShoppingList;
 			sourceTree = "<group>";
 		};
 		CD8D6D9027C923E50029AF9F /* Models */ = {
@@ -113,8 +139,10 @@
 		CDA5951127C83B9100BD51AF /* 99_TryingMVVM */ = {
 			isa = PBXGroup;
 			children = (
-				CD03896127D64BF700A1CF2D /* BillingOverview */,
+				CD03896727D682D400A1CF2D /* ViewControllers */,
 				CD9CDB9C27CE9609000ACBE6 /* Description */,
+				CD03896E27D77F0E00A1CF2D /* ShoppingList */,
+				CD03896127D64BF700A1CF2D /* BillingOverview */,
 				CD8D6D9027C923E50029AF9F /* Models */,
 				CDA5952627C9238500BD51AF /* Views */,
 				CDA5951227C83B9100BD51AF /* AppDelegate.swift */,
@@ -210,12 +238,15 @@
 			files = (
 				CDA5951727C83B9100BD51AF /* ViewController.swift in Sources */,
 				CD64954A27CD6ADD0040457D /* BillingOverviewView.swift in Sources */,
+				CD03896B27D68D8B00A1CF2D /* ShoppingListViewController.swift in Sources */,
+				CD03897027D77F5500A1CF2D /* ShoppingListTableViewCell.swift in Sources */,
 				CD03895A27D5347D00A1CF2D /* BillingAdressLabel.swift in Sources */,
 				CDEA314127C9264200E724F3 /* ShoppingListView.swift in Sources */,
 				CD03896327D64C1800A1CF2D /* TotalNameLabel.swift in Sources */,
 				CD03895C27D5349B00A1CF2D /* ChequeTypeLabel.swift in Sources */,
 				CD03895E27D534BB00A1CF2D /* WorkingShiftLabel.swift in Sources */,
 				CD03896527D64C3A00A1CF2D /* TotalSumLabel.swift in Sources */,
+				CD03896D27D6911C00A1CF2D /* BillingOverviewViewController.swift in Sources */,
 				CDEA314327C989BC00E724F3 /* SeparatorView.swift in Sources */,
 				CD03896027D5351700A1CF2D /* ChequeDateLabel.swift in Sources */,
 				CD03895827D5345F00A1CF2D /* Indi­vid­ualTax­pay­erNum­berLabel.swift in Sources */,
@@ -223,6 +254,7 @@
 				CDA5951327C83B9100BD51AF /* AppDelegate.swift in Sources */,
 				CDA5951527C83B9100BD51AF /* SceneDelegate.swift in Sources */,
 				CDEA313F27C9248600E724F3 /* BillingInformation.swift in Sources */,
+				CD03896927D682F400A1CF2D /* DescriptionViewController.swift in Sources */,
 				CD8D6D8F27C923C00029AF9F /* DescriptionView.swift in Sources */,
 				CD03895627D5343100A1CF2D /* CompanyTitleLabel.swift in Sources */,
 			);

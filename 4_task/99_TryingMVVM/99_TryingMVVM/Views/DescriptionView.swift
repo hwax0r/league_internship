@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class DesriptionView: UIView {
+final class DescriptionView: UIView {
   private var companyTitleLabel: CompanyTitleLabel
   private var indi­vid­ualTax­pay­erNum­berLabel: Indi­vid­ualTax­pay­erNum­berLabel
   private var billingAdressLabel: BillingAdressLabel
@@ -31,11 +31,11 @@ final class DesriptionView: UIView {
 
     configureView()
   }
-
+  
 }
 
 // MARK: - Private methods
-extension DesriptionView {
+extension DescriptionView {
   private func configureView(){
     self.backgroundColor = .secondarySystemBackground
     self.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +48,7 @@ extension DesriptionView {
     self.addSubview(chequeDateLabel)
 
     NSLayoutConstraint.activate([
-      companyTitleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 30),
+      companyTitleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
       companyTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
       companyTitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
 

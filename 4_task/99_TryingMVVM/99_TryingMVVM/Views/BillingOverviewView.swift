@@ -30,6 +30,7 @@ final class BillingOverviewView: UIView {
 // MARK: - Private methods
 extension BillingOverviewView {
   private func configureView() {
+    self.backgroundColor = .secondarySystemBackground
     self.translatesAutoresizingMaskIntoConstraints = false
 
     self.addSubview(totalNameLabel)
@@ -41,7 +42,7 @@ extension BillingOverviewView {
       totalNameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 5),
 
       totalSumLabel.topAnchor.constraint(equalTo: totalNameLabel.topAnchor),
-      totalSumLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 5),
+      totalSumLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
       totalSumLabel.bottomAnchor.constraint(equalTo: totalNameLabel.bottomAnchor),
     ])
   }

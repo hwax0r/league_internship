@@ -33,7 +33,7 @@ extension ShoppingListView {
   }
 
   private func setupTableView() {
-    self.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+    self.register(ShoppingListTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
   }
 }
 
@@ -44,11 +44,14 @@ extension ShoppingListView: UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = self.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+    let cell = self.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ShoppingListTableViewCell
     cell.selectionStyle = .none
-    var content = cell.defaultContentConfiguration()
-    content.text = "\(indexPath.row) \(productDescriptionData[indexPath.row].name) \(productDescriptionData[indexPath.row].pricePerUnit)*\(productDescriptionData[indexPath.row].numberOfUnits)=\(productDescriptionData[indexPath.row].totalSum)"
-    cell.contentConfiguration = content
+    cell.listPositionLabel.text = "\(indexPath.row+1)."
+    cell.productNameLabel.text = "\(productDescriptionData[indexPath.row].name)"
+    cell.productPricePerUnitLabel.text = "\(productDescriptionData[indexPath.row].pricePerUnit)"
+    cell.productNumberOfUnitsLabel.text = "\(productDescriptionData[indexPath.row].numberOfUnits)"
+    cell.productTotalSumLabel.text = "\(productDescriptionData[indexPath.row].totalSum)"
     return cell
   }
+  
 }
