@@ -8,11 +8,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-  /*
+
    let descriptionViewController: DescriptionViewController
    let shoppingListViewController: ShoppingListViewController
    let billingOverviewViewController: BillingOverviewViewController
-   */
+
   let billingInformation = BillingInformation(
     companyTitle: "ЯНДЕКС.МЕДИАСЕРВИСЫ",
     indi­vid­ualTax­pay­erNum­ber: "9705121040",
@@ -32,7 +32,7 @@ class ViewController: UIViewController {
   )
 
   // Output as View Controllers
-  /*
+
    init(){
    descriptionViewController = DescriptionViewController(billingInformation: billingInformation)
    shoppingListViewController = ShoppingListViewController(billingInformation: billingInformation)
@@ -44,26 +44,26 @@ class ViewController: UIViewController {
    required init?(coder: NSCoder) {
    fatalError("init(coder:) has not been implemented")
    }
-   */
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     // Testing output as a view
-    configureView()
+//    configureView()
 
     // Output as View Controllers
-    /*
+
      configureDescriptionViewController()
      configureShoppingListViewController()
      configureBillingOverviewViewController()
-     */
+
   }
 
 }
 
 // MARK: - Output as View Controllers
-/*
+
  extension ViewController {
  func add(_ child: UIViewController) {
  addChild(child)
@@ -99,7 +99,7 @@ class ViewController: UIViewController {
  }
 
  }
- */
+ 
 
 // MARK: - Testing output as a view
 extension ViewController {
